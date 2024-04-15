@@ -1,17 +1,36 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 3
+      Relatórios
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-card-content> 
+    <ion-list class="listaSenhasRecentes"> 
+     <ion-item> Senhas Emitidas: {{senhasService.senhasTotal}}</ion-item>
+     <ion-item> Senhas Geral: {{senhasService.senhasGeral}}</ion-item>
+     <ion-item> Senhas Prioritárias: {{senhasService.senhasPrior}}</ion-item>
+     <ion-item> Senhas Exame: {{senhasService.senhasExame}}</ion-item>
+    </ion-list>
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+
+    <ion-list>
+
+      <ion-item ngIf="senhasService.segundosSalvosSG.length > 0">
+        Média de Atendimento de Serviços Gerais {{ senhasService.calcularMediaSegundosSG() }}
+      </ion-item>
+
+      <ion-item ngIf="senhasService.segundosSalvosSP.length > 0">
+        Média de Atendimento de Serviços Prioritário {{ senhasService.calcularMediaSegundosSP() }}
+      </ion-item>
+
+      <ion-item *ngIf="senhasService.segundosSalvosSE.length > 0">
+        Média de Atendimento de Serviços Prioritário {{ senhasService.calcularMediaSegundosSE() }}
+      </ion-item>
+
+    </ion-list>
+
+  </ion-card-content>
 </ion-content>
